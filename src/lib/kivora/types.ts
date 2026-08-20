@@ -71,7 +71,7 @@ export interface Participant {
   displayName: string;
   role: string;
   organization: string;
-  speakerLabel?: string;
+  speakerLabel?: string | undefined;
   joinedAt: number;
   leftAt: number;
   attendedMinutes: number;
@@ -97,7 +97,7 @@ export type EventType =
 export interface MeetingEvent {
   id: string;
   meetingId: string;
-  participantId?: string;
+  participantId?: string | undefined;
   eventType: EventType;
   timestamp: number; // seconds from meeting start
   sourcePlatform: string;
@@ -111,10 +111,10 @@ export interface TranscriptSegment {
   start: number;
   end: number;
   speakerLabel: string;
-  participantId?: string;
+  participantId?: string | undefined;
   text: string;
   confidence: number;
-  redacted?: boolean;
+  redacted?: boolean | undefined;
 }
 
 export interface EvidenceCitation {
@@ -141,10 +141,10 @@ export interface MeetingInsight {
   meetingId: string;
   kind: InsightKind;
   title: string;
-  detail?: string;
-  owner?: string;
-  dueDate?: string;
-  needsReview?: boolean;
+  detail?: string | undefined;
+  owner?: string | undefined;
+  dueDate?: string | undefined;
+  needsReview?: boolean | undefined;
   evidence: EvidenceCitation[];
 }
 
@@ -178,7 +178,7 @@ export interface Meeting {
   encryptedAtRest: boolean;
   retentionPolicyId: string;
   tags: string[];
-  registrations?: number;
+  registrations?: number | undefined;
   attendeeCount: number;
   summary: string;
   technicalHealth: number;
@@ -198,7 +198,7 @@ export interface ProcessingJob {
   profile: ProcessingProfileId;
   startedAt: number;
   message: string;
-  error?: string;
+  error?: string | undefined;
 }
 
 export interface ModelInstallation {
@@ -207,13 +207,13 @@ export interface ModelInstallation {
   task: "transcription" | "diarization" | "llm" | "embedding" | "vad";
   provider: string;
   sizeGb: number;
-  quantization?: string;
+  quantization?: string | undefined;
   license: string;
   source: string;
   checksum: string;
   backends: InferenceBackend[];
   installed: boolean;
-  updateAvailable?: boolean;
+  updateAvailable?: boolean | undefined;
 }
 
 export interface ResourceLimits {
